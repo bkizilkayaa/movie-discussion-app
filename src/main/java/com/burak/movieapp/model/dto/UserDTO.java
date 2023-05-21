@@ -13,4 +13,5 @@ import java.util.List;
 public class UserDTO {
     private Long Id;
     private List<Comment> commentList;
+    private String username;
 }

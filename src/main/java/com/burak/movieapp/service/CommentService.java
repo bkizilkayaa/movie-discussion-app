@@ -19,15 +19,16 @@ public class CommentService {
     }
     public List<CommentDTO> getAllComments(){
         List<Comment> commentList= commentRepository.findAll();
-        return commentList.stream().map(model->CommentDTO.builder()
-                .Id(model.getId())
-                .text(model.getText())
-                .movie(model.getMovie())
-                .user(model.getUser()).build()).collect(Collectors.toList());
+        return commentList.stream()
+                .map(this::commentDtoBuild)
+                .collect(Collectors.toList());
     }
     public CommentDTO saveComment(Comment comment){
         commentRepository.save(comment);
-        return CommentDTO.builder()
+        return commentDtoBuild(comment);
+    }
+    private CommentDTO commentDtoBuild(Comment comment){
+       return CommentDTO.builder()
                 .text(comment.getText())
                 .movie(comment.getMovie())
                 .user(comment.getUser())
