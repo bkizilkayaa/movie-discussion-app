@@ -13,5 +13,6 @@ import java.util.List;
 public class MovieDTO {
     private Long Id;
     private String releaseYear;
+    private String movieName;
     private List<Comment> commentList;
 }

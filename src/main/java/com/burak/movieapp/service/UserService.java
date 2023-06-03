@@ -32,4 +32,8 @@ public class UserService {
                 .username(user.getUsername())
                 .build();
     }
+
+    public User findUserByGivenId(Long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
 }

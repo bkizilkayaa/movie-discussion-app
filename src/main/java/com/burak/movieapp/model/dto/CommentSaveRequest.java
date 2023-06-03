@@ -2,16 +2,17 @@ package com.burak.movieapp.model.dto;
 
 import com.burak.movieapp.model.Movie;
 import com.burak.movieapp.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @SuperBuilder
-public class CommentDTO {
-    private Long Id;
+public class CommentSaveRequest {
     private String text;
-    private Movie movie;
-    private User user;
+    private Long movie_id;
+    private Long user_id;
 }

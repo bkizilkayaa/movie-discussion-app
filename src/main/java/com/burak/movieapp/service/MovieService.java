@@ -19,19 +19,25 @@ public class MovieService {
     public List<MovieDTO> getAllMovies(){
         List<Movie> movieList=movieRepository.findAll();
         return movieList.stream()
-                .map(this::movieBuilder)
+                .map(this::movieDTOBuilder)
                 .collect(Collectors.toList());
     }
     public MovieDTO saveMovie(Movie movie){
         movieRepository.save(movie);
-        return movieBuilder(movie);
+        return movieDTOBuilder(movie);
     }
 
-    private MovieDTO movieBuilder(Movie movie){
+    private MovieDTO movieDTOBuilder(Movie movie){
         return MovieDTO.builder()
                 .Id(movie.getId())
                 .commentList(movie.getCommentList())
+                .movieName(movie.getName())
                 .releaseYear(movie.getReleaseYear())
                 .build();
+    }
+
+    public Movie findTheMovieByGivenId(Long movieId) {
+        return movieRepository.findById(movieId)
+                .orElseThrow(()->new RuntimeException("movie not found"));
     }
 }
